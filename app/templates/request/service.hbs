@@ -1,0 +1,21 @@
+{{page-title "Service"}}
+<div class="tab-pane fade show active">
+    {{#each @model as |service|}}
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col col-9">
+                    <h5 class="card-title">
+                        {{service.description}}
+                    </h5>
+                    <p class="card-text">{{service.duration}} minutes</p>
+                </div>
+                <div class="col col-3 text-right">
+                    <button class="btn btn-primary" type="button" {{action 'setSelectedService' service}}>Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{outlet}}

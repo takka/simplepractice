@@ -1,7 +1,41 @@
 {{page-title "Simpleppractice"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<BsNavbar @type="dark" @backgroundColor="primary" as |navbar|>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Demo practice</a>
+  </div>
+</BsNavbar>
 
-{{outlet}}
+<div class="container-md">
+    <div class="shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="row">
+            <div class="col col-md-3">
+                <BsNav class="flex-column" as |nav|>
+                    <nav.item>
+                        <nav.linkTo class="text-dark" @route="request.service">
+                            <span class="badge rounded-pill bg-dark text-light nav-sidebar__badge">
+                                {{#if this.selection.service }}✓{{else}}1{{/if}}
+                            </span>
+                            Select service
+                        </nav.linkTo>
+                        {{#if this.selection.service }}
+                            <p class="text-secondary px-4"><small>{{this.selection.service.description}} <br/>
+                                {{this.selection.service.duration}} minutes</small></p>
+                        {{/if}}
+                    </nav.item>
+                    <nav.item>
+                        <nav.linkTo  class="{{unless this.selection.service 'disabled' 'text-dark'}}" @route="request.location">
+                            <span class="badge rounded-pill {{unless this.selection.service 'bg-secondary' 'bg-dark'}} text-light nav-sidebar__badge">2</span>
+                            Select location
+                        </nav.linkTo>
+                    </nav.item>
+                </BsNav>
+            </div>
+            <div class="col col-md-9">
+                <div class="tab-content">
+                    {{outlet}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
