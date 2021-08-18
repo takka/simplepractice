@@ -1,6 +1,6 @@
 {{page-title "Simpleppractice"}}
 
-<BsNavbar @type="dark" @backgroundColor="primary" as |navbar|>
+<BsNavbar @type="dark" @backgroundColor="primary">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">Demo practice</a>
   </div>
@@ -10,26 +10,40 @@
     <div class="shadow-sm p-3 mb-5 bg-body rounded">
         <div class="row">
             <div class="col col-md-3">
-                <BsNav class="flex-column" as |nav|>
-                    <nav.item>
-                        <nav.linkTo class="text-dark" @route="request.service">
-                            <span class="badge rounded-pill bg-dark text-light nav-sidebar__badge">
-                                {{#if this.selection.service }}✓{{else}}1{{/if}}
-                            </span>
-                            Select service
-                        </nav.linkTo>
-                        {{#if this.selection.service }}
-                            <p class="text-secondary px-4"><small>{{this.selection.service.description}} <br/>
-                                {{this.selection.service.duration}} minutes</small></p>
-                        {{/if}}
-                    </nav.item>
-                    <nav.item>
-                        <nav.linkTo  class="{{unless this.selection.service 'disabled' 'text-dark'}}" @route="request.location">
-                            <span class="badge rounded-pill {{unless this.selection.service 'bg-secondary' 'bg-dark'}} text-light nav-sidebar__badge">2</span>
-                            Select location
-                        </nav.linkTo>
-                    </nav.item>
-                </BsNav>
+                <ul class="nav flex-column">
+                    <SidebarNav
+                            @isActive={{true}}
+                            @title="Select service"
+                            @order="1"
+                            @route="request.service"
+                            @isPassed={{this.selection.service}}
+                    >
+                        {{this.selection.service.description}}<br/>{{this.selection.service.duration}} minutes
+                    </SidebarNav>
+                    <SidebarNav
+                            @isActive={{this.selection.service}}
+                            @title="Select location"
+                            @order="2"
+                            @route="request.location"
+                            @isPassed={{this.selection.location}}
+                    >
+                        {{this.selection.location.name}}
+                    </SidebarNav>
+                    <SidebarNav
+                            @isActive={{this.selection.location}}
+                            @title="Select date and time"
+                            @order="3"
+                            @route="request.location"
+                            @isPassed={{this.selection.date}}
+                    ></SidebarNav>
+                    <SidebarNav
+                            @isActive={{this.selection.date}}
+                            @title="Your information"
+                            @order="4"
+                            @route="request.location"
+                            @isPassed={{this.selection.date}}
+                    ></SidebarNav>
+                </ul>
             </div>
             <div class="col col-md-9">
                 <div class="tab-content">

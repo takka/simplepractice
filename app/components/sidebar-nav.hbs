@@ -1,0 +1,11 @@
+<li class="nav-item">
+    <LinkTo class="nav-link {{unless @isActive 'disabled' 'active text-dark'}}" @route={{@route}}>
+        <span class="badge rounded-pill {{unless @isActive 'bg-secondary' 'bg-dark'}} text-light  nav-sidebar__badge">
+            {{#if @isPassed }}✓{{else}}{{@order}}{{/if}}
+        </span>
+        {{@title}}
+    </LinkTo>
+    {{#if @isPassed }}
+        <p class="text-secondary px-4"><small>{{yield}}</small></p>
+    {{/if}}
+</li>

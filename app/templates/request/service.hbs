@@ -11,7 +11,7 @@
                     <p class="card-text">{{service.duration}} minutes</p>
                 </div>
                 <div class="col col-3 text-right">
-                    <button class="btn btn-primary" type="button" {{action 'setSelectedService' service}}>Select</button>
+                    <button class="btn btn-primary" type="button" {{on 'click' (fn this.setSelectedService service)}}>Select</button>
                 </div>
             </div>
         </div>

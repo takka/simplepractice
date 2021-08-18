@@ -9,7 +9,7 @@
                         {{location.name}}
                     </h5>
                     <p class="card-text">{{location.phone}}</p>
-                    <button class="btn btn-primary" type="button">Select</button>
+                    <button class="btn btn-primary" type="button" {{on 'click' (fn this.setSelectedLocation location)}}>Select</button>
                 </div>
             </div>
         </div>
